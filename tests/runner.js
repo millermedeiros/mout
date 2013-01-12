@@ -17,11 +17,16 @@ var opts = {
 
 if (typeof document !== 'undefined') { // browser ---
 
-    reporter = new jasmine.HtmlReporter();
-    // in case the user decides to run a single spec
-    env.specFilter = function(spec){
-        return reporter.specFilter(spec);
-    };
+    if ('HtmlReporter' in jasmine) { // regular browser ---
+        reporter = new jasmine.HtmlReporter();
+        // in case the user decides to run a single spec
+        env.specFilter = function(spec){
+            return reporter.specFilter(spec);
+        };
+    } else { // tesling ---
+        reporter = new jasmine.TapReporter();
+    }
+
 
     //fail early local and cache bust
     opts.waitSeconds = (location.protocol === 'file:' || location.href.indexOf('://localhost') !== -1)? 5 : 45;
