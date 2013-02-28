@@ -61,7 +61,7 @@
       "tests/lib/jasmine/jasmine.async.js",
       "tests/lib/jasmine/jasmine-tap.js",
       "tests/lib/requirejs/require.js",
-      "tests/runner.js"
+      "tests/testlingRunner.js"
     ]
   }
 }
