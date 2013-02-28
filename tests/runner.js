@@ -31,6 +31,7 @@ if (typeof document !== 'undefined') { // browser ---
 
     } else { // tesling ---
         reporter = new jasmine.TapReporter();
+        reporter.log('# testling');
         opts.waitSeconds = 90;
     }
 
@@ -58,8 +59,10 @@ if (typeof document !== 'undefined') { // browser ---
 // load and execute specs, should come after all options and jasmine.getEnv()
 // calls
 requirejs(opts, ['spec-index'], function(){
+    reporter.log('# loaded specs');
     env.addReporter(reporter);
     env.execute();
+    reporter.log('# env.execute() ');
 });
 
 
