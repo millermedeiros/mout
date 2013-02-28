@@ -52,11 +52,8 @@
   },
   "testling": {
     "browsers": [
-      "ie7", "ie8", "ie9", "ie10",
-      "firefox/17", "firefox/nightly",
-      "chrome/23", "chrome/canary",
-      "opera/12", "opera/next",
-      "safari/5.1"
+      "ie9",
+      "chrome/23"
     ],
     "scripts": [
       "tests/lib/jasmine/jasmine.js",

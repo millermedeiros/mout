@@ -18,19 +18,29 @@ var opts = {
 if (typeof document !== 'undefined') { // browser ---
 
     if ('HtmlReporter' in jasmine) { // regular browser ---
+
         reporter = new jasmine.HtmlReporter();
         // in case the user decides to run a single spec
         env.specFilter = function(spec){
             return reporter.specFilter(spec);
         };
+        //fail early local and cache bust
+        opts.waitSeconds = (location.protocol === 'file:' || location.href.indexOf('://localhost') !== -1)? 5 : 45;
+        opts.urlArgs = 'bust='+ (+new Date());
+
     } else { // tesling ---
+
         reporter = new jasmine.TapReporter();
+        // testling bundles all the scripts together and we can't use relative
+        // paths to load files on the repository so we need to load the files
+        // from rawgithub.com
+        opts.paths = {
+            mout : 'http://rawgithub.com/mout/mout/master/src',
+            spec : 'http://rawgithub.com/mout/mout/master/tests/spec'
+        };
+        opts.waitSeconds = 120;
+
     }
-
-
-    //fail early local and cache bust
-    opts.waitSeconds = (location.protocol === 'file:' || location.href.indexOf('://localhost') !== -1)? 5 : 45;
-    opts.urlArgs = 'bust='+ (+new Date());
 
 } else { // nodejs ---
 
