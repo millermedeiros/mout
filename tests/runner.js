@@ -60,8 +60,22 @@ if (typeof document !== 'undefined') { // browser ---
 // calls
 reporter.log('# '+ describe.toString().split('\n').join('\n# ') );
 requirejs(opts, ['spec-index'], function(){
-    reporter.log('# defined modules:');
+
+    reporter.log('# -------');
+    reporter.log('# defined');
+    reporter.log('# -------');
     reporter.log('# '+ Object.keys(requirejs.s.contexts._.defined).join('\n# ') );
+
+    reporter.log('# ----------');
+    reporter.log('# urlFetched');
+    reporter.log('# ----------');
+    reporter.log('# '+ JSON.stringify( requirejs.s.contexts._.urlFetched ).replace(/,"/g, ',\n# "') );
+    reporter.log('# ---------');
+    reporter.log('# defQueue');
+    reporter.log('# ---------');
+    reporter.log('# '+ JSON.stringify( requirejs.s.contexts._.defQueue ) );
+
+    reporter.log('# ===============');
     reporter.log('# '+ describe.toString().split('\n').join('\n# ') );
     env.addReporter(reporter);
     env.execute();
