@@ -1,4 +1,4 @@
-define('array/spec-compact', ['mout/array/compact'], function (compact) {
+define(['mout/array/compact'], function (compact) {
 
     describe('array/compact()', function () {
 

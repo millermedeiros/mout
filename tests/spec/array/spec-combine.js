@@ -1,4 +1,4 @@
-define('array/spec-combine', ['mout/array/combine'], function (append) {
+define(['mout/array/combine'], function (append) {
 
     describe('array/combine()', function(){
 

@@ -52,16 +52,15 @@
   },
   "testling": {
     "browsers": [
-      "ie10",
-      "firefox/17",
+      "ie9",
       "chrome/23"
     ],
     "scripts": [
       "tests/lib/jasmine/jasmine.js",
       "tests/lib/jasmine/jasmine.async.js",
       "tests/lib/jasmine/jasmine-tap.js",
-      "tests/lib/requirejs/require.js",
-      "tests/testlingRunner.js"
+      "tests/lib/curl.js",
+      "tests/testling.js"
     ]
   }
 }
