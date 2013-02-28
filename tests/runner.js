@@ -58,8 +58,11 @@ if (typeof document !== 'undefined') { // browser ---
 
 // load and execute specs, should come after all options and jasmine.getEnv()
 // calls
+reporter.log('# '+ describe.toString().split('\n').join('\n# ') );
 requirejs(opts, ['spec-index'], function(){
-    reporter.log('# loaded specs');
+    reporter.log('# defined modules:');
+    reporter.log('# '+ Object.keys(requirejs.s.contexts._.defined).join('\n# ') );
+    reporter.log('# '+ describe.toString().split('\n').join('\n# ') );
     env.addReporter(reporter);
     env.execute();
     reporter.log('# env.execute() ');
