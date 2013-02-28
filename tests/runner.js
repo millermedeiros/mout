@@ -58,7 +58,12 @@ if (typeof document !== 'undefined') { // browser ---
 
 // load and execute specs, should come after all options and jasmine.getEnv()
 // calls
-reporter.log('# '+ describe.toString().split('\n').join('\n# ') );
+reporter.log('# -------');
+reporter.log('# define()');
+reporter.log('# -------');
+reporter.log('# '+ define.toString().split('\n').join('\n# ') );
+reporter.log('# ===============');
+
 requirejs(opts, ['spec-index'], function(){
 
     reporter.log('# -------');
@@ -74,6 +79,14 @@ requirejs(opts, ['spec-index'], function(){
     reporter.log('# defQueue');
     reporter.log('# ---------');
     reporter.log('# '+ JSON.stringify( requirejs.s.contexts._.defQueue ) );
+
+    reporter.log('# ===============');
+
+    reporter.log('# -------');
+    reporter.log('# define()');
+    reporter.log('# -------');
+    reporter.log('# '+ define.toString().split('\n').join('\n# ') );
+    reporter.log('# -------');
 
     reporter.log('# ===============');
     reporter.log('# '+ describe.toString().split('\n').join('\n# ') );
