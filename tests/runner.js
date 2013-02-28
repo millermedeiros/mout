@@ -24,14 +24,15 @@ if (typeof document !== 'undefined') { // browser ---
         env.specFilter = function(spec){
             return reporter.specFilter(spec);
         };
+
+        //fail early local and cache bust
+        opts.waitSeconds = (location.protocol === 'file:' || location.href.indexOf('://localhost') !== -1)? 5 : 45;
+        opts.urlArgs = 'bust='+ (+new Date());
+
     } else { // tesling ---
         reporter = new jasmine.TapReporter();
+        opts.waitSeconds = 90;
     }
-
-
-    //fail early local and cache bust
-    opts.waitSeconds = (location.protocol === 'file:' || location.href.indexOf('://localhost') !== -1)? 5 : 45;
-    opts.urlArgs = 'bust='+ (+new Date());
 
 } else { // nodejs ---
 
