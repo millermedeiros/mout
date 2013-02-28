@@ -58,13 +58,22 @@ if (typeof document !== 'undefined') { // browser ---
 
 // load and execute specs, should come after all options and jasmine.getEnv()
 // calls
-reporter.log('# -------');
-reporter.log('# define()');
-reporter.log('# -------');
-reporter.log('# '+ define.toString().split('\n').join('\n# ') );
-reporter.log('# ===============');
+
+var count = 0;
+var interv = setInterval(function(){
+// reporter.log('# ********');
+    reporter.log('# '+ Object.keys( requirejs.s.contexts._.registry ) );
+// reporter.log('# ********');
+    if (count++ > 50) {
+        clearInterval(interv);
+    }
+}, 5);
+
+define('foo', ['bar', 'ipsum'], function(){});
 
 requirejs(opts, ['spec-index'], function(){
+
+    clearInterval(interv);
 
     reporter.log('# -------');
     reporter.log('# defined');
@@ -75,21 +84,19 @@ requirejs(opts, ['spec-index'], function(){
     reporter.log('# urlFetched');
     reporter.log('# ----------');
     reporter.log('# '+ JSON.stringify( requirejs.s.contexts._.urlFetched ).replace(/,"/g, ',\n# "') );
+
     reporter.log('# ---------');
     reporter.log('# defQueue');
     reporter.log('# ---------');
     reporter.log('# '+ JSON.stringify( requirejs.s.contexts._.defQueue ) );
 
-    reporter.log('# ===============');
-
-    reporter.log('# -------');
-    reporter.log('# define()');
-    reporter.log('# -------');
-    reporter.log('# '+ define.toString().split('\n').join('\n# ') );
-    reporter.log('# -------');
+    reporter.log('# ---------');
+    reporter.log('# registry');
+    reporter.log('# ---------');
+    reporter.log('# '+ Object.keys( requirejs.s.contexts._.registry ) );
 
     reporter.log('# ===============');
-    reporter.log('# '+ describe.toString().split('\n').join('\n# ') );
+
     env.addReporter(reporter);
     env.execute();
     reporter.log('# env.execute() ');
