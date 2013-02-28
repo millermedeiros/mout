@@ -1,4 +1,4 @@
-define(['mout/array/append'], function (append) {
+define('array/spec-append', ['mout/array/append'], function (append) {
 
     describe('array/append()', function(){
 

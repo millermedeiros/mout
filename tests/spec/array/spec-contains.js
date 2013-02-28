@@ -1,4 +1,4 @@
-define(['mout/array/contains'], function (contains) {
+define('array/spec-contains', ['mout/array/contains'], function (contains) {
 
     describe('array/contains()', function(){
 
